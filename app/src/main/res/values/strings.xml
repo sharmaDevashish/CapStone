@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name" translatable="true">Capstone</string>
+    <string name="action_settings" translatable="true">Settings</string>
+    <string name="search_hint" translatable="true">Type to search</string>
+
+
+    <string name="title_text">Easy Expenses\nSign In</string>
+    <string name="signed_out">Signed out</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+
+    <string name="loading">Loading…</string>
+
+    <!-- Button labels -->
+    <string name="ok" translatable="true">Ok</string>
+    <string name="cancel" translatable="true">Cancel</string>
+
+    <string name="widget_add_button" translatable="false">+</string>
+    <string name="add_expense_description" translatable="true">add expense</string>
+    <string name="pref_budget" translatable="true">Monthly budget</string>
+    <string name="pref_budget_default" translatable="false">0</string>
+    <string name="title_activity_settings" translatable="true">Settings</string>
+    <string name="pref_budget_description" translatable="true">monthly budget</string>
+    <string name="action_logout">Logout</string>
+</resources>
