@@ -1,41 +1,38 @@
 {
   "project_info": {
-    "project_number": "636604189656",
-    "project_id": "capstone-1334"
+    "project_number": "742034673763",
+    "project_id": "firebase-expensesapplication"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:636604189656:android:fd7a67309d6c3de0",
+        "mobilesdk_app_id": "1:742034673763:android:41ade21817719239",
         "android_client_info": {
           "package_name": "com.devashishsharma.capstone"
         }
       },
       "oauth_client": [
         {
-          "client_id": "636604189656-ngq73eo3e04d1vcrlujoht4ubfe8au8d.apps.googleusercontent.com",
+          "client_id": "742034673763-d231ikfi9lbvt3k9g7firlsu7g9csio7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.devashishsharma.capstone",
-            "certificate_hash": "DBD658F0F2D57FB407823B8C5D3034F25CAA4369"
+            "certificate_hash": "A3B7B6743A0C9C0950E94A1CEDFDEF1A0F0EC467"
           }
         },
         {
-          "client_id": "636604189656-3nad7iert6k354eutd3shi4g8noapnj5.apps.googleusercontent.com",
+          "client_id": "742034673763-npdegbrakc86semst6813j69aom5qcr0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDmPOMtsQsKEkyqVA2IjjjWGUCNTz00Ec"
+          "current_key": "AIzaSyCzdk68NkwtrwsLZUEHoqEYQ4H6upmSAAg"
         }
       ],
       "services": {
         "analytics_service": {
-          "status": 2,
-          "analytics_property": {
-            "tracking_id": "UA-78550755-1"
-          }
+          "status": 1
         },
         "appinvite_service": {
           "status": 1,
