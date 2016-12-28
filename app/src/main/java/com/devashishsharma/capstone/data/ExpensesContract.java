@@ -14,7 +14,7 @@ import android.util.Log;
  */
 public final class ExpensesContract {
 
-    public static final String CONTENT_AUTHORITY = "com.adeneche.capstone";
+    public static final String CONTENT_AUTHORITY = "com.devashishsharma.capstone";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 

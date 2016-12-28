@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final int EXPENSES_LOADER_ID = 1007;
     private static final int SPENT_LOADER_ID = 2008;
-
+    SimpleCursorAdapter simpleCursorAdapter;
     private String mEmail;
 
     private double mBudget;
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity
             if (data.moveToFirst()) {
                 mSpent = data.getDouble(0);
             }
+
 
             mBudgetBar.setProgress((float) mSpent);
             mBudgetSpent.setText(Utils.formatCurrency(mSpent));
