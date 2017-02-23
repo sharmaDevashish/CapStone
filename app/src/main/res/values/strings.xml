@@ -10,7 +10,8 @@
     <string name="default_text">00</string>
     <string name="loading">Loading…</string>
     <string name="available">Available</string>
-
+    <string name="descText">$200</string>
+    <string name="toolbarFrameText">Spent</string>
     <!-- Button labels -->
     <string name="ok" translatable="true">Ok</string>
     <string name="cancel" translatable="true">Cancel</string>

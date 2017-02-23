@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:textSize="20dp"
-            android:text="Spent"/>
+            android:text="@string/toolbarFrameText"/>
         <TextView
             android:id="@+id/budget_spent"
             android:layout_width="wrap_content"
