@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             mEmail = "sharma.devashish001@gmail.com";
             addExpense = true;
         } else {
-            mEmail = intent.getStringExtra(EXTRA_EMAIL);
+            mEmail = "sharma.devashish001@gmail.com";//intent.getStringExtra(EXTRA_EMAIL);
             Log.i(TAG, "Signed in as " + mEmail);
         }
 

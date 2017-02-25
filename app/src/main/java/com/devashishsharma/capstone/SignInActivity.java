@@ -110,7 +110,8 @@ public class SignInActivity extends AppCompatActivity implements
             intent.putExtra(MainActivity.EXTRA_EMAIL, acct.getEmail());
             startActivity(intent);
         } else {
-
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
     // [END handleSignInResult]
