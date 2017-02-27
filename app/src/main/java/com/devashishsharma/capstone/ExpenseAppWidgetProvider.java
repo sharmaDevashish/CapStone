@@ -82,7 +82,7 @@ public class ExpenseAppWidgetProvider extends AppWidgetProvider {
             final int month = cal.get(Calendar.MONTH);
             final int year = cal.get(Calendar.YEAR);
 
-            
+            //TODO use async task instead
             Cursor spent = context.getContentResolver().query(
                     ExpensesContract.buildSpent(email, month, year), null, null, null, null);
             if (spent.moveToFirst()) {
