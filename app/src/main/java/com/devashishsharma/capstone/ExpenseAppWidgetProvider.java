@@ -82,7 +82,7 @@ public class ExpenseAppWidgetProvider extends AppWidgetProvider {
         private final String email;
 
         private RemoteViews remoteViews;
-
+        //TODO use async task instead
         SpentTask(Context context, AppWidgetManager appWidgetManager, int appWidgetId,
                   String email) {
             this.context = context;
