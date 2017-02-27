@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -24,7 +25,7 @@ public class ExpenseAppWidgetProvider extends AppWidgetProvider {
     private static final String TAG = ExpenseAppWidgetProvider.class.getSimpleName();
 
     public static final String ACTION_UPDATE_TOTAL_SPENT = "update.spent";
-    public static final String EXTRA_EMAIL="email";
+    public static final String EXTRA_EMAIL = "email";
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -55,6 +56,7 @@ public class ExpenseAppWidgetProvider extends AppWidgetProvider {
                     filteredWidgetIds.add(appWidgetId);
                 }
             }
+
             appWidgetIds = new int[filteredWidgetIds.size()];
             int idx = 0;
             for (int appWidgetId : filteredWidgetIds) {
@@ -69,30 +71,62 @@ public class ExpenseAppWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, String email) {
         Log.d(TAG, "updateAppWidget appWidgetId=" + appWidgetId + " email=" + email);
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.expense_appwidget);
+        new SpentTask(context, appWidgetManager, appWidgetId, email).execute((Void[]) null);
+    }
 
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.setAction(MainActivity.ACTION_ADD_EXPENSE);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_button, pendingIntent);
+    public static class SpentTask extends AsyncTask<Void, Void, Double> {
 
-        double totalSpent = 0;
-        {
+        private final Context context;
+        private final AppWidgetManager appWidgetManager;
+        private final int appWidgetId;
+        private final String email;
+
+        private RemoteViews remoteViews;
+
+        SpentTask(Context context, AppWidgetManager appWidgetManager, int appWidgetId,
+                  String email) {
+            this.context = context;
+            this.appWidgetManager = appWidgetManager;
+            this.appWidgetId = appWidgetId;
+            this.email = email;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            remoteViews = new RemoteViews(context.getPackageName(), R.layout.expense_appwidget);
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setAction(MainActivity.ACTION_ADD_EXPENSE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            remoteViews.setOnClickPendingIntent(R.id.widget_button, pendingIntent);
+        }
+
+        @Override
+        protected Double doInBackground(Void... emails) {
+            double totalSpent = 0.0D;
+
             final Calendar cal = Calendar.getInstance();
             final int month = cal.get(Calendar.MONTH);
             final int year = cal.get(Calendar.YEAR);
 
             
-            Cursor spent = context.getContentResolver().query(
+            Cursor spentCursor = context.getContentResolver().query(
                     ExpensesContract.buildSpent(email, month, year), null, null, null, null);
-            if (spent.moveToFirst()) {
-                totalSpent = spent.getDouble(0);
+
+            if (spentCursor == null) return totalSpent;
+
+            if (spentCursor.moveToFirst()) {
+                totalSpent = spentCursor.getDouble(0);
             }
-            spent.close();
+
+            spentCursor.close();
+
+            return totalSpent;
         }
-        remoteViews.setTextViewText(R.id.widget_text, Utils.formatCurrency(totalSpent));
 
-        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        @Override
+        protected void onPostExecute(Double result) {
+            remoteViews.setTextViewText(R.id.widget_text, Utils.formatCurrency(result));
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        }
     }
-
 }
